@@ -1,0 +1,28 @@
+.content{
+     float:left;
+     width: 60%;
+     padding:0 0 0 30px;
+     height: 100%;
+     background:red;
+
+}
+.sidebar{  
+     float:right;
+     width:40%;
+     padding:10px;
+     background: yellow;
+     height: 100%;
+}
+h1{
+    text-align:center;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 10px;
+}
+body{
+    color: white;
+    background-color: red;
+}
+#date{
+    font-style: italic;
+    color:yellow;
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{%extends 'testapp/base.html'%}
+{%block title %}BLOG{%endblock%}
+{%block content%}
+<h1> Blog</h1>
+{%if tag%} 
+<h2>Posts tagged with "{{tag.name}}"</h2>
+{%endif%} 
+{%for ele in post%}
+<h2><a href="{{ele.get_absolute_url}}">{{ele.title}}</a></h2>
+<br>
+<p id='date'>Published on {{ele.publish}} by {{ele.author|title}}</p>
+<p> Tags:
+{%for tag in ele.tags.all%} 
+<div >
+    <a href="{%url 'post_list_by_tag_name' tag.slug%}" class ='btn btn-success'>{{tag.name}}</a>
+</div>
+{%endfor%}
+</p>
+<p>{{ele.body|truncatewords:30|linebreaks}}</p>
+{%endfor%} 
+{% include 'testapp/pagination.html' with page=post%}
+{%endblock%}

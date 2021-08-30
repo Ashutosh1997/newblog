@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{%extends 'testapp/base.html'%}
+{%block title %}{{post.title}}{%endblock%}
+{%block content%}
+<p id='date'>Published on {{post1.publish}} by {{post1.author|title}}</p>
+<p>{{post1.body|linebreaks}}</p>
+{% with comment.count as comments_count %}
+<h2>{{comments_count}} Comment{{comments_count|pluralize}}</h2>
+{% endwith%}
+{%if comment %}
+{%for comment in comment %}
+<p> comment {{forloop.counter}} by {{comment.name}} on{{comment.created}}</p>
+<p>{{comment.body|linebreaks}}</p>
+<hr>
+{%endfor%}
+{%else%}
+<p>There are NO Comments Yet !!!</p>
+{%endif%}
+{%if csubmit %}
+<h2>Your Comment Added Succefully</h2>
+{%else%}
+ <form method="POST">
+     {{form.as_p}}
+     {%csrf_token%}
+     <input type="submit" value="Submit Comment">
+ </form>    
+ <br>
+ {%endif%}
+<a href="/{{post1.id}}/share" class='btn btn-lg btn-primary'>Share Post By Email</a>
+<a href="/" class='btn btn-lg btn-primary'>Back To Post</a>
+{%endblock%}
